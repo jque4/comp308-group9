@@ -29,7 +29,7 @@ export default function Login() {
       login(data.login);
       // Here, you can handle storing the token, e.g., in localStorage
       // Redirect or update UI accordingly
-      navigate("/");
+      navigate("https://group9-frontend.netlify.app/");
     },
     onError: (error) => {
       setLoginError(error.message);
