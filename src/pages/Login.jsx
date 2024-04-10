@@ -17,7 +17,7 @@ export default function Login() {
   function loginUser() {
     handlelogin();
   }
-  const { onChange, onSubmit, values } = useForm(loginUser, initialState);
+  const { onChange, values } = useForm(loginUser, initialState);
   const navigate = useNavigate();
   // Apollo useMutation hook for the login mutation
   const [handlelogin, { data, loading, error }] = useMutation(LOGIN_MUTATION, {

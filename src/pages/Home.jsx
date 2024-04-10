@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      {role == "Patient" ? <PatientHome /> : <NurseHome />}
+      {role === "Patient" ? <PatientHome /> : <NurseHome />}
     </>
   );
 };
