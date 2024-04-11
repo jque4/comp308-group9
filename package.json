@@ -30,8 +30,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "CI='' react-scripts build",
-    "test": "react-scripts test",
+    "build": "react-scripts build",
+    "test": "react-scripts test --passWithNoTests --watchAll=false",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
