@@ -1,12 +1,10 @@
-import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Button, Flex } from "antd";
 import axios from "axios";
 import { PATIENT_USER } from "../GraphQL/Queries";
 import { ADD_MY_VITAL } from "../GraphQL/Mutations";
-import { Alert } from "antd";
 import { AuthContext } from "../context/authContext";
 import VitalCard from "../components/VitalCard";
 import { DNA, ThreeCircles } from "react-loader-spinner";
@@ -22,7 +20,7 @@ export default function PatientHome() {
     address: "",
     vitals: [],
   });
-  const [tips, setTips] = useState([]);
+
   const {
     register,
     handleSubmit,
@@ -33,9 +31,9 @@ export default function PatientHome() {
     handleSubmit: handleSubmit1,
     formState: { errors: errors1 },
   } = useForm();
-  const navigate = useNavigate();
-  const { user_id, user } = useContext(AuthContext);
-  const [getProfile, { loading, error }] = useLazyQuery(PATIENT_USER, {
+
+  const { user_id } = useContext(AuthContext);
+  const [getProfile, { loading }] = useLazyQuery(PATIENT_USER, {
     variables: {
       id: user_id,
     },
