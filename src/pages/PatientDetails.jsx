@@ -50,9 +50,9 @@ const PatientDetails = () => {
     onCompleted: (res) => {
       console.log(res.addVitalToUser);
       var state = { ...data };
-      console.log(state.vitals);
+      // console.log(state.vitals);
       state.vitals.push(res.addVitalToUser);
-      console.log(state.vitals);
+      // console.log(state.vitals);
       //setData(state);
       setData((currentData) => {
         // Creating a deep copy of the vitals array to ensure immutability
@@ -60,6 +60,7 @@ const PatientDetails = () => {
         // Returning a new state object with the updated vitals array
         return { ...currentData, vitals: updatedVitals };
       });
+      console.log(data);
     },
     onError: ({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
@@ -101,6 +102,8 @@ const PatientDetails = () => {
       .then((result) => {
         console.log(result.data[0]);
         result = result.data;
+        console.log("result");
+        console.log(result[0][0]);
         if (result[0][0] > 0.525) {
           setVitalMessage(
             "Your Vitals show you are at risk. Please send a alert to a nurse"
@@ -115,11 +118,17 @@ const PatientDetails = () => {
           setVitalState("loaded");
           setVitalMessage("Vitals are okay.");
         }
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       })
       .catch((err) => {
         console.log(err);
         setVitalState("loaded");
         setVitalMessage("Some Error happened");
+        setTimeout(() => {
+          window.location.reload();
+        }, 3000);
       });
   };
 
