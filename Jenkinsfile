@@ -8,6 +8,14 @@ pipeline {
                 git url: 'https://github.com/jque4/comp308-group9.git', branch: 'main', credentialsId: 'GitHub-Token'
             }
         }
+        stage('SonarQube Code Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube_server') {
+                    // SonarQube static code analysis
+                    bat 'node sonarqube-scanner.js'
+                }
+            }
+        }
         stage('Build') {
             steps {
                 script {
@@ -22,13 +30,8 @@ pipeline {
         }
         stage('Test') {
             steps {
-                withSonarQubeEnv('SonarQube_server') {
-                    // Run unit tests
-                    bat 'npm test'
-                    
-                    // SonarQube static code analysis
-                    bat 'node sonarqube-scanner.js'
-                }
+                // Run unit tests
+                bat 'npm test'
             }
         }
         stage('Deliver') {
