@@ -32,7 +32,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --passWithNoTests --watchAll=false --coverage --reporters=jest-junit --coverageReporters=cobertura",
+    "test": "react-scripts test --passWithNoTests --watchAll=false --coverage --coverageReporters=cobertura",
     "eject": "react-scripts eject"
   },
   "browserslist": {
@@ -59,7 +59,8 @@
   "jest": {
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
+      "src/**/*.{js,jsx}",
+      "!<rootDir>/node_modules/"
     ]
   }
 }
